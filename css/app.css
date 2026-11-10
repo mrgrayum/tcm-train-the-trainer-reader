@@ -144,7 +144,7 @@ body.stage-dark{--stage-bg:var(--carbon);--stage-fg:var(--white)}
 .swatch{width:22px;height:22px;border-radius:4px;border:2px solid var(--carbon-5);padding:0}
 .swatch[aria-pressed="true"]{border-color:var(--white);outline:2px solid var(--bolt)}
 #navHint{position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:40;display:flex;align-items:center;gap:10px;
-  background:var(--carbon);color:var(--cream);padding:10px 12px;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,.35);
+  background:var(--carbon);color:var(--white);padding:10px 12px;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,.35);
   font-size:14px;max-width:240px;animation:navHintNudge 1.8s ease-in-out infinite}
 #navHint.hidden{display:none}
 #navHint .navHint-arrow{font-size:26px;line-height:1;color:var(--bolt)}

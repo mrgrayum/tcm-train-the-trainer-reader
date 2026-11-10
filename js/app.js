@@ -139,7 +139,7 @@
   /* ---------- first-time page-turn hint ---------- */
   var navHintPage = null;
   function maybeShowNavHint() {
-    if (Storage.getSetting('navHintSeen', false)) return;
+    if (Storage.getSetting('navHintSeen2', false)) return;
     if (!$('welcome').classList.contains('hidden')) return; // wait until Start is clicked
     if (!$('navHint').classList.contains('hidden')) return;
     navHintPage = (Reader.currentPages()[0] || 1);
@@ -148,7 +148,7 @@
   function dismissNavHint() {
     if ($('navHint').classList.contains('hidden')) return;
     $('navHint').classList.add('hidden');
-    Storage.setSetting('navHintSeen', true);
+    Storage.setSetting('navHintSeen2', true);
   }
   Notes.onSaveStatus = function (t) { $('saveStatus').textContent = t; };
   Notes.onChange = function () {
