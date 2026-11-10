@@ -43,6 +43,8 @@
     zoom: 1,            // 1 = fit
     singlePage: false,
     cache: new Map(),   // pageNum -> HTMLCanvasElement (rendered, offscreen or adoptable)
+    stageEl: null,      // set by app.js at startup (and refreshed by renderCurrent args)
+    bookEl: null,
     renderToken: 0,
     onProgress: null,   // fn(loaded, total)
     onRender: null,     // fn() after a spread is in the DOM
@@ -176,6 +178,13 @@
     renderCurrent: function (stageEl, bookEl) {
       var self = this;
       if (!this.pdfDoc) return Promise.resolve();
+      // Navigation (goToSpread/next/prev/goToPage) calls renderCurrent() with
+      // no arguments — fall back to the elements registered by app.js.
+      if (stageEl) this.stageEl = stageEl;
+      if (bookEl) this.bookEl = bookEl;
+      stageEl = stageEl || this.stageEl;
+      bookEl = bookEl || this.bookEl;
+      if (!stageEl || !bookEl) return Promise.resolve();
       var token = ++this.renderToken;
       return this.fitScale(stageEl).then(function (scale) {
         if (token !== self.renderToken) return;

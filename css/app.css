@@ -169,7 +169,7 @@ body.stage-dark{--stage-bg:var(--carbon);--stage-fg:var(--white)}
 .welcome-steps{display:flex;gap:12px;margin:22px 0;text-align:left}
 .welcome-steps div{flex:1;background:var(--carbon-1);border-top:4px solid var(--bolt);padding:10px 12px;font-size:13px;line-height:1.55}
 .welcome-steps strong{display:block;color:var(--bolt-light);letter-spacing:.12em;text-transform:uppercase;font-size:12px}
-.welcome-warn{background:#FFF7E8;color:var(--carbon);border-left:6px solid var(--bolt);padding:10px 14px;font-size:13px;text-align:left;margin:0 0 20px}
+#welcome .welcome-warn{background:#FFF7E8;color:var(--carbon);border-left:6px solid var(--bolt);padding:10px 14px;font-size:13px;text-align:left;margin:0 0 20px}
 #welcomeStart{font-size:17px;padding:12px 38px}
 
 @media (max-width:1279px){ #sidebar{width:260px;flex-basis:260px} }

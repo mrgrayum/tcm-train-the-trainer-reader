@@ -12,6 +12,8 @@
 
   var Reader = window.TCMReader, Notes = window.TCMNotes,
       Storage = window.TCMStorage, Export = window.TCMExport;
+  // Register the stage elements once — Reader navigation renders through these.
+  Reader.stageEl = stage; Reader.bookEl = bookEl;
 
   /* ---------- settings ---------- */
   $('studentName').value = Storage.getSetting('studentName', '');
@@ -116,8 +118,9 @@
 
   /* ---------- opening + rendering ---------- */
   Reader.onProgress = function (loaded, total) {
+    if ($('errorBox').classList.contains('show')) return; // don't resurrect the loader over an error
     $('loadBox').classList.add('show');
-    if (total > 0) { $('loadProgress').value = Math.round((loaded / total) * 100); $('loadText').textContent = 'Loading book… ' + Math.round((loaded / total) * 100) + '%'; }
+    if (total > 0) { var pct = Math.min(100, Math.round((loaded / total) * 100)); $('loadProgress').value = pct; $('loadText').textContent = 'Loading book… ' + pct + '%'; }
     else $('loadText').textContent = 'Loading book…';
   };
   Reader.onRender = function (wraps) {
@@ -151,7 +154,8 @@
         Notes.load(book.id, anns);
         var last = Storage.getSetting('lastPosition', {});
         var page = startPage || (last.bookId === book.id ? last.page : 1) || 1;
-        Reader.goToPage(Math.min(page, Reader.numPages));
+        // Set the target spread without rendering, then render exactly once.
+        Reader.spreadIndex = Reader.spreadIndexForPage(Reader.spreads, Math.min(page, Reader.numPages));
         return rerender();
       });
     }).catch(function (err) {
