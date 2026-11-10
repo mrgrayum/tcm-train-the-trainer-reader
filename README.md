@@ -31,8 +31,8 @@ code) to change a title, description, or accent colour.
 | `QUANTA-PERFORMANCE-TRAINEE.pdf` | Quanta Human Performance Principles — Trainee Manual | 40 | 37.8 MB | 576 × 780 pt |
 | `QUANTA-PERFORMANCE-TRAINER.pdf` | Quanta Human Performance Principles — Instructor Manual | 62 | 41.0 MB | 576 × 775.7 pt |
 | `QUANTA-HUMAN-ADDITIONAL.pdf` | Quanta Human Performance Principles — Additional Materials | 6 | 5.9 MB | 604.8 × 775.2 pt |
-| `STKY-ENERGY-WHEEL-TRAINEE.pdf` | STKY and the Energy Wheel — Trainee Manual | 56 | 45.0 MB | 576 × 777.1 pt |
-| `STKY-ENERGY-WHEEL-TRAINER.pdf` | STKY and the Energy Wheel — Instructor Manual | 68 | 45.0 MB | 576 × 774.2 pt |
+| `STKY-ENERGY-WHEEL-TRAINEE.pdf` | STKY and the Energy Wheel — Trainee Manual | 56 | 33.5 MB † | 576 × 777.1 pt |
+| `STKY-ENERGY-WHEEL-TRAINER.pdf` | STKY and the Energy Wheel — Instructor Manual | 68 | 33.4 MB † | 576 × 774.2 pt |
 | `STKY-ENERGY-WHEEL-ADDITIONAL.pdf` | STKY and the Energy Wheel — Additional Materials | 5 | 5.0 MB | 604.8 × 774.2 pt |
 
 Inspection notes:
@@ -51,9 +51,17 @@ Inspection notes:
   are 6 and 5. With cover-alone + back-cover-alone spread logic, the
   second-to-last spread of an even-count book is a single middle page —
   that is expected, not a bug.
-- Combined size ≈ 180 MB. Largest single file ≈ 45 MB — under GitHub's
-  100 MB per-file limit; the whole site is well under the 1 GB GitHub
-  Pages limit.
+- Combined size as hosted ≈ 157 MB. Largest single file ≈ 41 MB — under
+  GitHub's 100 MB per-file limit; the whole site is well under the 1 GB
+  GitHub Pages limit.
+- † The two STKY manuals were originally 45.0 MB each (300 dpi page
+  scans), which exceeded the GitHub API's per-file upload limit. Their
+  page images were recompressed from 300 dpi to 200 dpi (JPEG quality
+  80) for hosting: 45.0 MB → 33.5 MB / 33.4 MB. Page count, page size,
+  text layer (verified character-for-character on sampled pages), and
+  on-screen appearance are unchanged — a side-by-side render check of a
+  text-and-diagram page was indistinguishable. The untouched 300 dpi
+  originals remain in the owner's Google Drive folder.
 
 ## Test it on your own computer (2 minutes)
 
