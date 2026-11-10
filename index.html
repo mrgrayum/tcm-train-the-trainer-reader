@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCM Train the Trainer — Digital Book Reader</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- Welcome screen (first load) -->
+<div id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-card">
+    <!-- TODO: Quanta logo — no logo file was supplied; do not invent one. See assets/README.md -->
+    <h1 id="welcomeTitle">TCM <span class="red">Train</span> the <span class="red">Trainer</span></h1>
+    <p>Your course books, on your laptop. Open a book, follow along, and take notes right on the pages.</p>
+    <div class="welcome-steps">
+      <div><strong>1 · Pick a book</strong>Choose any of the six books from the library on the left.</div>
+      <div><strong>2 · Take notes</strong>Use the toolbar at the bottom to add sticky notes, highlights, and text boxes.</div>
+      <div><strong>3 · Save your PDF</strong>Before you leave, save your annotated PDF or back up your notes.</div>
+    </div>
+    <p class="welcome-warn"><strong>Important:</strong> your notes are saved only in <em>this browser, on this computer</em>.
+      If browser data is cleared, or you switch computers or use a private window, your notes will be gone.
+      Use <strong>Save annotated PDF</strong> or <strong>Back up my notes</strong> before you leave.</p>
+    <button type="button" id="welcomeStart" class="btn primary">Start</button>
+  </div>
+</div>
+
+<div id="app">
+  <aside id="sidebar" aria-label="Library">
+    <div class="logo-placeholder" aria-label="Quanta logo placeholder">Quanta logo — TODO (see assets)</div>
+    <h1 class="course-title">TCM <span class="accent">Train the Trainer</span></h1>
+    <p class="co-brand">A Quanta Services Company</p>
+    <div class="sidebar-tabs" role="tablist" aria-label="Sidebar panels">
+      <button type="button" role="tab" id="tabLibrary" aria-selected="true">Library</button>
+      <button type="button" role="tab" id="tabNotes" aria-selected="false">Notes</button>
+    </div>
+    <div id="bookList" role="list" aria-label="Books"></div>
+    <div id="notesPanel" aria-label="Notes panel">
+      <label for="notesScope">Show notes from</label>
+      <select id="notesScope">
+        <option value="current">This book</option>
+        <option value="all">All books</option>
+      </select>
+      <div id="notesList"></div>
+    </div>
+    <div class="sidebar-footer">
+      <input type="text" id="studentName" aria-label="Your name (optional, appears on exported notes)" placeholder="Your name (optional)">
+      <button type="button" id="btnSavePdf" class="btn primary">Save annotated PDF</button>
+      <button type="button" id="btnSaveAll" class="btn">Save all books (ZIP)</button>
+      <button type="button" id="btnFlatten" class="btn">Print / Flatten (non-editable)</button>
+      <button type="button" id="btnBackup" class="btn bolt">Back up my notes</button>
+      <button type="button" id="btnRestore" class="btn">Restore notes</button>
+      <input type="file" id="restoreFile" accept="application/json,.json" hidden>
+      <div id="exportStatus" role="status" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <div id="mainCol">
+    <div id="storageBanner" role="note">
+      <span>Your notes live in this browser only. Back them up or save your annotated PDF before you leave.</span>
+      <button type="button" class="btn small" id="bannerDismiss">Got it</button>
+    </div>
+    <header id="topbar">
+      <button type="button" class="icon-btn" id="btnSidebar" aria-label="Toggle library sidebar" aria-pressed="false">&#9776;</button>
+      <span class="book-name" id="currentBookName">No book open</span>
+      <span class="spacer"></span>
+      <button type="button" class="icon-btn" id="btnPrev" aria-label="Previous page">&#8592;</button>
+      <button type="button" class="icon-btn" id="btnNext" aria-label="Next page">&#8594;</button>
+      <label>Go to page <input type="number" id="gotoPage" min="1" aria-label="Go to PDF page number"></label>
+      <input type="range" id="pageSlider" min="0" value="0" aria-label="Page slider">
+      <span id="pageLabel" aria-live="polite"></span>
+      <button type="button" class="icon-btn" id="btnZoomOut" aria-label="Zoom out">&#8722;</button>
+      <button type="button" class="btn small" id="btnZoomFit">Fit</button>
+      <button type="button" class="icon-btn" id="btnZoomIn" aria-label="Zoom in">+</button>
+      <button type="button" class="icon-btn" id="btnFocus" aria-label="Focus mode: hide sidebar" aria-pressed="false">&#9974;</button>
+      <button type="button" class="icon-btn" id="btnTheme" aria-label="Toggle light or dark reading stage" aria-pressed="false">&#9680;</button>
+    </header>
+    <div id="singleNotice">Narrow screen: showing one page at a time instead of a two-page spread.</div>
+    <main id="stage" aria-label="Reading stage">
+      <div id="book" data-mode="cover"></div>
+      <div id="loadBox"><progress id="loadProgress" max="100" value="0"></progress><div id="loadText">Loading book…</div></div>
+      <div id="errorBox">
+        <h2>That book could not be opened</h2>
+        <p id="errorText">The PDF file could not be loaded.</p>
+        <button type="button" class="btn primary" id="btnRetry">Retry</button>
+      </div>
+
+      <div id="noteToolbar" role="toolbar" aria-label="Note tools">
+        <button type="button" class="icon-btn tool-btn" data-tool="select" aria-pressed="true" aria-label="Select / move tool" title="Select">&#10138;</button>
+        <button type="button" class="icon-btn tool-btn" data-tool="sticky" aria-pressed="false" aria-label="Sticky note tool: click a page to place a note" title="Sticky note">&#9998;</button>
+        <button type="button" class="icon-btn tool-btn" data-tool="textbox" aria-pressed="false" aria-label="Text box tool: click a page to place a text box" title="Text box">T</button>
+        <span class="sep" aria-hidden="true"></span>
+        <span id="hlSwatches" aria-label="Highlight colour"></span>
+        <button type="button" class="btn small" id="btnHighlight">Highlight selection</button>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" class="icon-btn" id="btnUndo" aria-label="Undo">&#8630;</button>
+        <button type="button" class="icon-btn" id="btnRedo" aria-label="Redo">&#8631;</button>
+        <span id="saveStatus" role="status">Saved</span>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="lib/pdfjs/pdf.min.js"></script>
+<script src="lib/pdf-lib/pdf-lib.min.js"></script>
+<script src="lib/jszip/jszip.min.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/reader.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Local test / temp files
+*.tmp
+.DS_Store
+Thumbs.db
