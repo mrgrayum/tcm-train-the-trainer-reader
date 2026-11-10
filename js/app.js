@@ -279,6 +279,11 @@
   window.addEventListener('resize', function () { rerender(); });
 
   /* ---------- note tools ---------- */
+  $('btnTools').addEventListener('click', function () {
+    var open = $('noteToolbar').classList.toggle('open');
+    $('btnTools').setAttribute('aria-pressed', open ? 'true' : 'false');
+    $('btnTools').setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
   function setTool(tool) {
     Notes.tool = tool;
     document.querySelectorAll('.tool-btn').forEach(function (b) {

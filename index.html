@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCM Train the Trainer — Digital Book Reader</title>
-<link rel="stylesheet" href="css/app.css?v=20261110g">
+<link rel="stylesheet" href="css/app.css?v=20261110h">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <p>Your course books, on your laptop. Open a book, follow along, and take notes right on the pages.</p>
     <div class="welcome-steps">
       <div><strong>1 · Pick a book</strong>Choose any of the six books from the library on the left.</div>
-      <div><strong>2 · Take notes</strong>Use the toolbar at the bottom to add sticky notes and highlights.</div>
+      <div><strong>2 · Take notes</strong>Open <strong>Note tools</strong> in the top bar — the tools slide up at the bottom. Add sticky notes and highlights.</div>
       <div><strong>3 · Save your PDF</strong>Before you leave, save your annotated PDF or back up your notes.</div>
     </div>
     <p class="welcome-warn"><strong>Important:</strong> your notes are saved only in <em>this browser, on this computer</em>.
@@ -70,6 +70,7 @@
       <button type="button" class="icon-btn" id="btnZoomOut" aria-label="Zoom out">&#8722;</button>
       <button type="button" class="btn small" id="btnZoomFit">Fit</button>
       <button type="button" class="icon-btn" id="btnZoomIn" aria-label="Zoom in">+</button>
+      <button type="button" class="btn small" id="btnTools" aria-pressed="false" aria-expanded="false" aria-controls="noteToolbar">&#9998; Note tools</button>
       <button type="button" class="icon-btn" id="btnFocus" aria-label="Focus mode: hide sidebar" aria-pressed="false">&#9974;</button>
       <button type="button" class="icon-btn" id="btnTheme" aria-label="Toggle light or dark reading stage" aria-pressed="false">&#9680;</button>
     </header>
@@ -88,28 +89,29 @@
         <button type="button" class="btn primary" id="btnRetry">Retry</button>
       </div>
 
-      <div id="noteToolbar" role="toolbar" aria-label="Note tools">
-        <button type="button" class="icon-btn tool-btn" data-tool="select" aria-pressed="true" aria-label="Select / move tool" title="Select">&#10138;</button>
-        <button type="button" class="icon-btn tool-btn" data-tool="sticky" aria-pressed="false" aria-label="Sticky note tool: click a page to place a note" title="Sticky note">&#9998;</button>
-        <span class="sep" aria-hidden="true"></span>
-        <span id="hlSwatches" aria-label="Highlight colour"></span>
-        <button type="button" class="btn small" id="btnHighlight">Highlight selection</button>
-        <span class="sep" aria-hidden="true"></span>
-        <button type="button" class="icon-btn" id="btnUndo" aria-label="Undo">&#8630;</button>
-        <button type="button" class="icon-btn" id="btnRedo" aria-label="Redo">&#8631;</button>
-        <span id="saveStatus" role="status">Saved</span>
-      </div>
     </main>
+
+    <div id="noteToolbar" role="toolbar" aria-label="Note tools">
+      <button type="button" class="icon-btn tool-btn" data-tool="select" aria-pressed="true" aria-label="Select / move tool" title="Select">&#10138;</button>
+      <button type="button" class="icon-btn tool-btn" data-tool="sticky" aria-pressed="false" aria-label="Sticky note tool: click a page to place a note" title="Sticky note">&#9998;</button>
+      <span class="sep" aria-hidden="true"></span>
+      <span id="hlSwatches" aria-label="Highlight colour"></span>
+      <button type="button" class="btn small" id="btnHighlight">Highlight selection</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" class="icon-btn" id="btnUndo" aria-label="Undo">&#8630;</button>
+      <button type="button" class="icon-btn" id="btnRedo" aria-label="Redo">&#8631;</button>
+      <span id="saveStatus" role="status">Saved</span>
+    </div>
   </div>
 </div>
 
-<script src="lib/pdfjs/pdf.min.js?v=20261110g"></script>
-<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110g"></script>
-<script src="lib/jszip/jszip.min.js?v=20261110g"></script>
-<script src="js/storage.js?v=20261110g"></script>
-<script src="js/reader.js?v=20261110g"></script>
-<script src="js/notes.js?v=20261110g"></script>
-<script src="js/export.js?v=20261110g"></script>
-<script src="js/app.js?v=20261110g"></script>
+<script src="lib/pdfjs/pdf.min.js?v=20261110h"></script>
+<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110h"></script>
+<script src="lib/jszip/jszip.min.js?v=20261110h"></script>
+<script src="js/storage.js?v=20261110h"></script>
+<script src="js/reader.js?v=20261110h"></script>
+<script src="js/notes.js?v=20261110h"></script>
+<script src="js/export.js?v=20261110h"></script>
+<script src="js/app.js?v=20261110h"></script>
 </body>
 </html>

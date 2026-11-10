@@ -73,7 +73,7 @@ h1,h2,h3{font-family:var(--heading-font);line-height:1.45;text-transform:upperca
 .sidebar-footer input[type="text"]{width:100%;padding:6px;margin:0 0 6px;font-size:14px}
 
 /* ---------- stage ---------- */
-#mainCol{flex:1;display:flex;flex-direction:column;min-width:0}
+#mainCol{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
 #topbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--white);
   border-bottom:3px solid var(--infrared);padding:6px 10px;color:var(--carbon)}
 #topbar .spacer{flex:1}
@@ -134,9 +134,15 @@ body.stage-dark{--stage-bg:var(--carbon);--stage-fg:var(--white)}
 .hl-swatch{width:26px;height:26px;border:2px solid var(--carbon-2);border-radius:4px;padding:0}
 
 /* ---------- floating toolbar / status ---------- */
-#noteToolbar{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;z-index:60;
+/* Note tools live OUTSIDE the scrolling stage (child of #mainCol) so zooming
+   or scrolling the document can never strand them mid-page. They are hidden
+   until pulled up with the Note tools button in the top bar. */
+#noteToolbar{position:absolute;left:50%;bottom:14px;z-index:60;
   display:flex;gap:4px;align-items:center;background:var(--carbon);color:var(--white);
-  border-radius:6px;padding:6px 8px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+  border-radius:6px;padding:6px 8px;box-shadow:0 6px 20px rgba(0,0,0,.4);
+  transform:translate(-50%,18px);opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .18s ease,opacity .18s ease,visibility .18s}
+#noteToolbar.open{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto}
 #noteToolbar .sep{width:2px;height:24px;background:var(--carbon-2);margin:0 2px}
 #noteToolbar .icon-btn{color:var(--white)}
 #saveStatus{font-size:12px;color:var(--bolt-light);min-width:52px}

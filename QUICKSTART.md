@@ -18,7 +18,8 @@ If you get lost, type a page number in the **Go to page** box at the top.
 The number under each page is the book's real page number, so when the
 instructor says "turn to page 42," that's the page to go to.
 
-**To take notes**, use the toolbar at the bottom of the screen:
+**To take notes**, press **Note tools** in the top bar — the note tools
+slide up at the bottom of the screen:
 
 - The **pencil** adds a sticky note — click it, then click anywhere on a page.
 - **Select text** with your mouse, pick a colour, and press
