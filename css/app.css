@@ -41,7 +41,6 @@ h1,h2,h3{font-family:var(--heading-font);line-height:1.45;text-transform:upperca
 #app.focus-mode #sidebar{display:none}
 .course-title{margin:16px 16px 0;font-size:24px;color:var(--white)}
 .course-title .accent{color:var(--bolt-light)}
-.co-brand{margin:0 16px 10px;font-size:10px;letter-spacing:.2em;color:var(--carbon-5);text-transform:uppercase}
 .sidebar-tabs{display:flex;gap:4px;padding:8px 16px 0}
 .sidebar-tabs button{flex:1;background:var(--carbon-1);color:var(--white);border:none;border-bottom:3px solid transparent;
   padding:7px 4px;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase}

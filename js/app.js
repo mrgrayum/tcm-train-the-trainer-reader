@@ -134,21 +134,36 @@
     wraps.forEach(function (w) { Notes.renderPage(w.wrap); });
     updateNav();
     maybeShowNavHint();
+    positionNavHint();
   };
 
   /* ---------- first-time page-turn hint ---------- */
   var navHintPage = null;
   function maybeShowNavHint() {
-    if (Storage.getSetting('navHintSeen2', false)) return;
+    if (Storage.getSetting('navHintSeen3', false)) return;
     if (!$('welcome').classList.contains('hidden')) return; // wait until Start is clicked
     if (!$('navHint').classList.contains('hidden')) return;
     navHintPage = (Reader.currentPages()[0] || 1);
     $('navHint').classList.remove('hidden');
+    positionNavHint();
+  }
+  // Anchor the hint to the right edge of the rightmost rendered page itself,
+  // not to the edge of the window/stage (per Matt, Nov 10 2026).
+  function positionNavHint() {
+    var hint = $('navHint');
+    if (hint.classList.contains('hidden')) return;
+    var wraps = stage.querySelectorAll('.page-wrap');
+    if (!wraps.length) return;
+    var last = wraps[wraps.length - 1];
+    var sr = stage.getBoundingClientRect();
+    var wr = last.getBoundingClientRect();
+    hint.style.right = Math.max(6, (sr.right - wr.right) + stage.scrollLeft + 10) + 'px';
+    hint.style.top = ((wr.top - sr.top) + stage.scrollTop + wr.height / 2) + 'px';
   }
   function dismissNavHint() {
     if ($('navHint').classList.contains('hidden')) return;
     $('navHint').classList.add('hidden');
-    Storage.setSetting('navHintSeen2', true);
+    Storage.setSetting('navHintSeen3', true);
   }
   Notes.onSaveStatus = function (t) { $('saveStatus').textContent = t; };
   Notes.onChange = function () {
