@@ -165,10 +165,33 @@
       this.attachDrag(el.querySelector('.sticky-icon'), el, ann, W, H);
       if (expanded) {
         var ta = el.querySelector('textarea');
-        ta.addEventListener('change', function () { self.update(ann.id, { text: ta.value }, true); });
+        // Commit text as it is typed (no re-render), so by the time Done is
+        // pressed there is no pending 'change' left. Previously the text only
+        // committed on blur: clicking Done blurred the textarea, the commit
+        // re-rendered the layer, the Done button was replaced mid-click, and
+        // the click was swallowed — Done needed two clicks to collapse.
+        ta.addEventListener('input', function () { ann.text = ta.value; self.scheduleSave(); });
+        ta.addEventListener('change', function () {
+          if (!self.annotations.some(function (x) { return x.id === ann.id; })) return;
+          if (ann.text !== ta.value) self.update(ann.id, { text: ta.value }, true);
+        });
         ta.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
-        el.querySelector('.sticky-done').addEventListener('click', function () { self.expandedId = null; if (self.onChange) self.onChange(); });
-        el.querySelector('.sticky-delete').addEventListener('click', function () { self.remove(ann.id); });
+        // Act on pointerdown (before any blur) as well as click (keyboard).
+        var done = function (ev) {
+          if (ev.type === 'pointerdown') ev.preventDefault();
+          if (self.expandedId === null) return;
+          self.expandedId = null;
+          if (self.onChange) self.onChange();
+        };
+        el.querySelector('.sticky-done').addEventListener('pointerdown', done);
+        el.querySelector('.sticky-done').addEventListener('click', done);
+        var del = function (ev) {
+          if (ev.type === 'pointerdown') ev.preventDefault();
+          if (!self.annotations.some(function (x) { return x.id === ann.id; })) return;
+          self.remove(ann.id);
+        };
+        el.querySelector('.sticky-delete').addEventListener('pointerdown', del);
+        el.querySelector('.sticky-delete').addEventListener('click', del);
       }
       return el;
     },

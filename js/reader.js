@@ -58,7 +58,7 @@
       this.close();
       this.book = book;
       if (!global.pdfjsLib) return Promise.reject(new Error('PDF.js failed to load.'));
-      global.pdfjsLib.GlobalWorkerOptions.workerSrc = 'lib/pdfjs/pdf.worker.min.js?v=20261110h';
+      global.pdfjsLib.GlobalWorkerOptions.workerSrc = 'lib/pdfjs/pdf.worker.min.js?v=20261110i';
       var loadingTask = global.pdfjsLib.getDocument({
         url: url,
         // range / streaming so the first spread appears before the whole file arrives
