@@ -1,6 +1,6 @@
 # TCM Train the Trainer — Digital Book Reader
 
-A browser-based reader for the six TCM Train the Trainer course books.
+A browser-based reader for the TCM Train the Trainer course books.
 Students open a link, follow along in the real books (shown as a cover, then
 two-page spreads, then the back cover), take notes right on the pages, and
 save a personal annotated PDF at the end.
@@ -21,7 +21,7 @@ build spec.
 
 ---
 
-## The six books (verified by inspection, 2026-11-10)
+## The books (verified by inspection, 2026-11-10)
 
 Book titles/files are listed in `books/books.json` — edit that file (not the
 code) to change a title, description, or accent colour.
@@ -34,10 +34,11 @@ code) to change a title, description, or accent colour.
 | `STKY-ENERGY-WHEEL-TRAINEE.pdf` | STKY and the Energy Wheel — Trainee Manual | 56 | 33.5 MB † | 576 × 777.1 pt |
 | `STKY-ENERGY-WHEEL-TRAINER.pdf` | STKY and the Energy Wheel — Instructor Manual | 68 | 33.4 MB † | 576 × 774.2 pt |
 | `STKY-ENERGY-WHEEL-ADDITIONAL.pdf` | STKY and the Energy Wheel — Additional Materials | 5 | 5.0 MB | 604.8 × 774.2 pt |
+| `Presentation-Evaluation-Rubric_cleaned.pdf` | Presentation Evaluation Rubric | 4 | 4.2 MB | 612 × 792 pt (letter) |
 
 Inspection notes:
 
-- All six are PDF 1.3, unencrypted, no rotation, and every page within a
+- All seven are PDF 1.3, unencrypted, no rotation, and every page within a
   book is the same size — no mixed sizes to handle.
 - Interior pages are text-based (sampled pages extracted 600–2,000
   characters of text each), including the STKY Instructor Manual, whose
@@ -51,7 +52,10 @@ Inspection notes:
   are 6 and 5. With cover-alone + back-cover-alone spread logic, the
   second-to-last spread of an even-count book is a single middle page —
   that is expected, not a bug.
-- Combined size as hosted ≈ 157 MB. Largest single file ≈ 41 MB — under
+- The Presentation Evaluation Rubric (added 2026-11-10) is a cleaned scan:
+  its text layer is spotty (page 4 has none), so text highlighting is
+  limited there — pages render normally and sticky notes work throughout.
+- Combined size as hosted ≈ 161 MB. Largest single file ≈ 41 MB — under
   GitHub's 100 MB per-file limit; the whole site is well under the 1 GB
   GitHub Pages limit.
 - † The two STKY manuals were originally 45.0 MB each (300 dpi page
@@ -80,7 +84,7 @@ from `file://` pages.)
 ## Deploy — GitHub Pages (how this site is hosted)
 
 1. The repo `mrgrayum/tcm-train-the-trainer-reader` is public, with the
-   six PDFs committed in `books/`.
+   seven PDFs committed in `books/`.
 2. GitHub Pages is enabled for the `main` branch, root folder.
 3. Any push to `main` republishes the site at
    https://mrgrayum.github.io/tcm-train-the-trainer-reader/ within a
@@ -152,7 +156,7 @@ from `file://` pages.)
 ## v2 ideas
 
 - Freehand pen / drawing annotations
-- Full-text search across all six books
+- Full-text search across all the books
 - Shared instructor notes (a master annotation set shown to every student)
 - Realistic page-curl animation
 - Synced notes (sign-in + cloud storage) so notes follow a student
@@ -172,7 +176,7 @@ from `file://` pages.)
 /lib/pdfjs/            PDF.js 3.11.174 (bundled, no CDN)
 /lib/pdf-lib/          pdf-lib 1.17.1 (bundled)
 /lib/jszip/            JSZip 3.10.1 (bundled)
-/books/books.json      EDIT THIS: the six book titles / file names
-/books/                the six course PDFs (committed; hosted by Pages)
+/books/books.json      EDIT THIS: the book titles / file names
+/books/                the course PDFs (committed; hosted by Pages)
 QUICKSTART.md          one-page student quick-start — read it aloud in class
 ```

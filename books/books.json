@@ -1,1 +1,54 @@
-{"books":[{"accent":"#CD0A1B","description":"Trainee manual · 40 pages","file":"QUANTA-PERFORMANCE-TRAINEE.pdf","id":"quanta-performance-trainee","title":"Quanta Human Performance Principles — Trainee Manual"},{"accent":"#CD0A1B","description":"Instructor manual · 62 pages","file":"QUANTA-PERFORMANCE-TRAINER.pdf","id":"quanta-performance-trainer","title":"Quanta Human Performance Principles — Instructor Manual"},{"accent":"#CD0A1B","description":"Additional materials · 6 pages","file":"QUANTA-HUMAN-ADDITIONAL.pdf","id":"quanta-human-additional","title":"Quanta Human Performance Principles — Additional Materials"},{"accent":"#F0941C","description":"Trainee manual · 56 pages","file":"STKY-ENERGY-WHEEL-TRAINEE.pdf","id":"stky-energy-wheel-trainee","title":"STKY and the Energy Wheel — Trainee Manual"},{"accent":"#F0941C","description":"Instructor manual · 68 pages","file":"STKY-ENERGY-WHEEL-TRAINER.pdf","id":"stky-energy-wheel-trainer","title":"STKY and the Energy Wheel — Instructor Manual"},{"accent":"#F0941C","description":"Additional materials · 5 pages","file":"STKY-ENERGY-WHEEL-ADDITIONAL.pdf","id":"stky-energy-wheel-additional","title":"STKY and the Energy Wheel — Additional Materials"}],"courseTitle":"TCM Train the Trainer"}
+{
+ "books": [
+  {
+   "accent": "#CD0A1B",
+   "description": "Trainee manual \u00b7 40 pages",
+   "file": "QUANTA-PERFORMANCE-TRAINEE.pdf",
+   "id": "quanta-performance-trainee",
+   "title": "Quanta Human Performance Principles \u2014 Trainee Manual"
+  },
+  {
+   "accent": "#CD0A1B",
+   "description": "Instructor manual \u00b7 62 pages",
+   "file": "QUANTA-PERFORMANCE-TRAINER.pdf",
+   "id": "quanta-performance-trainer",
+   "title": "Quanta Human Performance Principles \u2014 Instructor Manual"
+  },
+  {
+   "accent": "#CD0A1B",
+   "description": "Additional materials \u00b7 6 pages",
+   "file": "QUANTA-HUMAN-ADDITIONAL.pdf",
+   "id": "quanta-human-additional",
+   "title": "Quanta Human Performance Principles \u2014 Additional Materials"
+  },
+  {
+   "accent": "#F0941C",
+   "description": "Trainee manual \u00b7 56 pages",
+   "file": "STKY-ENERGY-WHEEL-TRAINEE.pdf",
+   "id": "stky-energy-wheel-trainee",
+   "title": "STKY and the Energy Wheel \u2014 Trainee Manual"
+  },
+  {
+   "accent": "#F0941C",
+   "description": "Instructor manual \u00b7 68 pages",
+   "file": "STKY-ENERGY-WHEEL-TRAINER.pdf",
+   "id": "stky-energy-wheel-trainer",
+   "title": "STKY and the Energy Wheel \u2014 Instructor Manual"
+  },
+  {
+   "accent": "#F0941C",
+   "description": "Additional materials \u00b7 5 pages",
+   "file": "STKY-ENERGY-WHEEL-ADDITIONAL.pdf",
+   "id": "stky-energy-wheel-additional",
+   "title": "STKY and the Energy Wheel \u2014 Additional Materials"
+  },
+  {
+   "accent": "#221F1F",
+   "description": "Evaluation form \u00b7 4 pages",
+   "file": "Presentation-Evaluation-Rubric_cleaned.pdf",
+   "id": "presentation-evaluation-rubric",
+   "title": "Presentation Evaluation Rubric"
+  }
+ ],
+ "courseTitle": "TCM Train the Trainer"
+}
