@@ -35,8 +35,11 @@ h1,h2,h3{font-family:var(--heading-font);line-height:1.45;text-transform:upperca
 .icon-btn[aria-pressed="true"]{background:var(--bolt);color:var(--carbon)}
 
 /* ---------- layout ---------- */
-#app{display:flex;height:100vh;width:100vw}
-#sidebar{width:300px;flex:0 0 300px;background:var(--carbon);color:var(--white);display:flex;flex-direction:column;overflow:hidden}
+#app{display:flex;height:100vh;width:100vw;position:relative}
+#btnCloseSidebar{position:absolute;top:8px;right:8px;z-index:5;color:var(--white);background:transparent;border-color:transparent;font-size:15px}
+#sidebarBackdrop{display:none}
+#sidebar{width:300px;flex:0 0 300px;background:var(--carbon);color:var(--white);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.course-title{padding-right:36px}
 #app.sidebar-hidden #sidebar{display:none}
 #app.focus-mode #sidebar{display:none}
 .course-title{margin:16px 16px 0;font-size:24px;color:var(--white)}
@@ -185,6 +188,8 @@ body.stage-dark{--stage-bg:var(--carbon);--stage-fg:var(--white)}
 @media (max-width:1279px){ #sidebar{width:260px;flex-basis:260px} }
 @media (max-width:899px){
   #sidebar{position:absolute;z-index:120;height:100%;box-shadow:6px 0 20px rgba(0,0,0,.4)}
+  /* dimmed backdrop beside the open drawer — tapping it collapses the menu */
+  #app:not(.sidebar-hidden):not(.focus-mode) #sidebarBackdrop{display:block;position:absolute;inset:0;z-index:110;background:rgba(20,18,18,.45)}
   #pageSlider{display:none}
   .welcome-steps{flex-direction:column}
   .welcome-card h1{font-size:36px}

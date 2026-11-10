@@ -36,11 +36,21 @@
   $('bannerDismiss').addEventListener('click', function () { $('storageBanner').classList.remove('show'); });
 
   /* ---------- sidebar / tabs ---------- */
-  $('btnSidebar').addEventListener('click', function () {
-    var hidden = appEl.classList.toggle('sidebar-hidden');
-    this.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+  function setSidebarHidden(hidden) {
+    appEl.classList.toggle('sidebar-hidden', hidden);
+    $('btnSidebar').setAttribute('aria-pressed', hidden ? 'true' : 'false');
     setTimeout(rerender, 60);
+  }
+  $('btnSidebar').addEventListener('click', function () {
+    setSidebarHidden(!appEl.classList.contains('sidebar-hidden'));
   });
+  // On phones the open drawer covers the ☰ button in the top bar, so the menu
+  // also collapses from inside itself (× button), from the dimmed backdrop
+  // beside it, and automatically when a book is picked.
+  $('btnCloseSidebar').addEventListener('click', function () { setSidebarHidden(true); });
+  $('sidebarBackdrop').addEventListener('click', function () { setSidebarHidden(true); });
+  // Phones start with the menu put away so the book is what you land on.
+  if (window.innerWidth < 900) setSidebarHidden(true);
   $('btnFocus').addEventListener('click', function () {
     var on = appEl.classList.toggle('focus-mode');
     this.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -93,7 +103,10 @@
       card.querySelector('.title').textContent = book.title;
       card.querySelector('.desc').textContent = book.description || '';
       card.style.borderLeftColor = (currentBook && currentBook.id === book.id) ? '' : (book.accent || 'transparent');
-      card.addEventListener('click', function () { openBook(book); });
+      card.addEventListener('click', function () {
+        openBook(book);
+        if (window.innerWidth < 900) setSidebarHidden(true); // drawer: picking a book puts the menu away
+      });
       list.appendChild(card);
       renderCoverThumb(book, card);
     });

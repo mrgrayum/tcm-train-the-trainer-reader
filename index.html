@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCM Train the Trainer — Digital Book Reader</title>
-<link rel="stylesheet" href="css/app.css?v=20261110i">
+<link rel="stylesheet" href="css/app.css?v=20261110j">
 </head>
 <body>
 
@@ -27,6 +27,7 @@
 
 <div id="app">
   <aside id="sidebar" aria-label="Library">
+    <button type="button" class="icon-btn" id="btnCloseSidebar" aria-label="Close library menu">&#10005;</button>
     <h1 class="course-title">TCM <span class="accent">Train the Trainer</span></h1>
     <div class="sidebar-tabs" role="tablist" aria-label="Sidebar panels">
       <button type="button" role="tab" id="tabLibrary" aria-selected="true">Library</button>
@@ -52,6 +53,7 @@
       <div id="exportStatus" role="status" aria-live="polite"></div>
     </div>
   </aside>
+  <div id="sidebarBackdrop" aria-hidden="true"></div>
 
   <div id="mainCol">
     <div id="storageBanner" role="note">
@@ -105,13 +107,13 @@
   </div>
 </div>
 
-<script src="lib/pdfjs/pdf.min.js?v=20261110i"></script>
-<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110i"></script>
-<script src="lib/jszip/jszip.min.js?v=20261110i"></script>
-<script src="js/storage.js?v=20261110i"></script>
-<script src="js/reader.js?v=20261110i"></script>
-<script src="js/notes.js?v=20261110i"></script>
-<script src="js/export.js?v=20261110i"></script>
-<script src="js/app.js?v=20261110i"></script>
+<script src="lib/pdfjs/pdf.min.js?v=20261110j"></script>
+<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110j"></script>
+<script src="lib/jszip/jszip.min.js?v=20261110j"></script>
+<script src="js/storage.js?v=20261110j"></script>
+<script src="js/reader.js?v=20261110j"></script>
+<script src="js/notes.js?v=20261110j"></script>
+<script src="js/export.js?v=20261110j"></script>
+<script src="js/app.js?v=20261110j"></script>
 </body>
 </html>
