@@ -23,8 +23,6 @@ instructor says "turn to page 42," that's the page to go to.
 - The **pencil** adds a sticky note — click it, then click anywhere on a page.
 - **Select text** with your mouse, pick a colour, and press
   **Highlight selection**.
-- The **T** adds a text box you can type in, right on the page — handy for
-  filling in blanks in the margins.
 - Made a mistake? The curved **undo arrow** takes it back.
 
 **One important thing:** your notes are saved automatically, but *only in

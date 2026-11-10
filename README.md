@@ -115,8 +115,11 @@ from `file://` pages.)
 
 ## How student notes work
 
-- Notes (sticky notes, highlights, text boxes) autosave to the student's
-  browser **IndexedDB** on that computer only.
+- Notes (sticky notes and highlights) autosave to the student's
+  browser **IndexedDB** on that computer only. (The text box tool was
+  removed Nov 10 2026 at the owner's direction — its editing was
+  unreliable and sticky notes cover the same need. Any text boxes
+  created before the removal still render and export.)
 - **Save annotated PDF** embeds the notes as real, editable PDF
   annotations in a copy of the original book (opens in Acrobat, Edge,
   Chrome, Preview). **Save all books** does the same for every book and
@@ -129,11 +132,11 @@ from `file://` pages.)
 ## Known limitations
 
 - Export is verified programmatically (annotations re-read and counted
-  after export). It has **not** been eyeball-tested in Adobe Acrobat —
-  open one exported file in Acrobat/Reader and in Preview and confirm
-  sticky notes, highlights, and text boxes look right before class.
+  after export) and was confirmed by the owner on Nov 10 2026: both the
+  editable-comments export and the flattened export work.
 - FreeText (text box) appearance is generated for common viewers; exact
   rendering can vary slightly between Acrobat, Edge, and Preview.
+  (Legacy support only — the text box tool itself was removed.)
 - Notes are per-browser/per-computer by design (personal, not shared).
   Nothing syncs between students.
 - Book cover thumbnails load each PDF's first page — on very slow
