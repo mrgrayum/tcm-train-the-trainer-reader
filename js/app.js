@@ -30,7 +30,9 @@
     Storage.setSetting('welcomed', true);
     $('welcome').classList.add('hidden');
     $('storageBanner').classList.add('show');
+    maybeShowNavHint();
   });
+  $('navHintClose').addEventListener('click', dismissNavHint);
   $('bannerDismiss').addEventListener('click', function () { $('storageBanner').classList.remove('show'); });
 
   /* ---------- sidebar / tabs ---------- */
@@ -131,7 +133,23 @@
     $('loadBox').classList.remove('show'); // a rendered spread means loading is done
     wraps.forEach(function (w) { Notes.renderPage(w.wrap); });
     updateNav();
+    maybeShowNavHint();
   };
+
+  /* ---------- first-time page-turn hint ---------- */
+  var navHintPage = null;
+  function maybeShowNavHint() {
+    if (Storage.getSetting('navHintSeen', false)) return;
+    if (!$('welcome').classList.contains('hidden')) return; // wait until Start is clicked
+    if (!$('navHint').classList.contains('hidden')) return;
+    navHintPage = (Reader.currentPages()[0] || 1);
+    $('navHint').classList.remove('hidden');
+  }
+  function dismissNavHint() {
+    if ($('navHint').classList.contains('hidden')) return;
+    $('navHint').classList.add('hidden');
+    Storage.setSetting('navHintSeen', true);
+  }
   Notes.onSaveStatus = function (t) { $('saveStatus').textContent = t; };
   Notes.onChange = function () {
     document.querySelectorAll('.page-wrap').forEach(function (wrap) { Notes.renderPage(wrap); });
@@ -159,8 +177,7 @@
       if (card) card.textContent = Reader.numPages + ' pages';
       return Storage.getAnnotations(book.id).then(function (anns) {
         Notes.load(book.id, anns);
-        var last = Storage.getSetting('lastPosition', {});
-        var page = startPage || (last.bookId === book.id ? last.page : 1) || 1;
+        var page = startPage || 1; // books always open at page 1 (per Matt, Nov 10 2026)
         // Set the target spread without rendering, then render exactly once.
         Reader.spreadIndex = Reader.spreadIndexForPage(Reader.spreads, Math.min(page, Reader.numPages));
         return rerender();
@@ -198,6 +215,8 @@
     $('gotoPage').value = pages[0] || '';
     $('btnPrev').disabled = Reader.spreadIndex <= 0;
     $('btnNext').disabled = Reader.spreadIndex >= Reader.spreads.length - 1;
+    // turning to a different page retires the first-time hint
+    if (navHintPage !== null && pages.length && pages[0] !== navHintPage) dismissNavHint();
     if (currentBook && pages.length) {
       Storage.setSetting('lastPosition', { bookId: currentBook.id, page: pages[0] });
     }

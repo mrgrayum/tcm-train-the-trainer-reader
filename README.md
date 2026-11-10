@@ -138,9 +138,9 @@ from `file://` pages.)
   Nothing syncs between students.
 - Book cover thumbnails load each PDF's first page — on very slow
   networks the library cards may show page counts before thumbnails.
-- The Quanta logo and licensed fonts (Alternate Gothic, Proxima Nova)
-  were not supplied; the layout uses a marked logo placeholder
-  (`assets/README.md`) and the specified Arial fallbacks.
+- No logo is used (removed at the owner's request, Nov 10 2026). The
+  licensed fonts (Alternate Gothic, Proxima Nova) were not supplied;
+  the layout uses the specified Arial fallbacks.
 - On screens narrower than ~900 px the reader switches to one page at a
   time and says so on screen.
 - Export runs in the page (not a background worker); on a ~45 MB book it

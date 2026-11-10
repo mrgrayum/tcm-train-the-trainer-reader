@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCM Train the Trainer — Digital Book Reader</title>
-<link rel="stylesheet" href="css/app.css?v=20261110c">
+<link rel="stylesheet" href="css/app.css?v=20261110d">
 </head>
 <body>
 
 <!-- Welcome screen (first load) -->
 <div id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
   <div class="welcome-card">
-    <!-- TODO: Quanta logo — no logo file was supplied; do not invent one. See assets/README.md -->
     <h1 id="welcomeTitle">TCM <span class="red">Train</span> the <span class="red">Trainer</span></h1>
     <p>Your course books, on your laptop. Open a book, follow along, and take notes right on the pages.</p>
     <div class="welcome-steps">
@@ -28,7 +27,6 @@
 
 <div id="app">
   <aside id="sidebar" aria-label="Library">
-    <div class="logo-placeholder" aria-label="Quanta logo placeholder">Quanta logo — TODO (see assets)</div>
     <h1 class="course-title">TCM <span class="accent">Train the Trainer</span></h1>
     <p class="co-brand">A Quanta Services Company</p>
     <div class="sidebar-tabs" role="tablist" aria-label="Sidebar panels">
@@ -80,6 +78,11 @@
     <main id="stage" aria-label="Reading stage">
       <div id="book" data-mode="cover"></div>
       <div id="loadBox"><progress id="loadProgress" max="100" value="0"></progress><div id="loadText">Loading book…</div></div>
+      <div id="navHint" class="hidden" role="note">
+        <span class="navHint-text">Click the edge of the page to turn it</span>
+        <span class="navHint-arrow" aria-hidden="true">&#8250;</span>
+        <button type="button" id="navHintClose" class="btn small">Got it</button>
+      </div>
       <div id="errorBox">
         <h2>That book could not be opened</h2>
         <p id="errorText">The PDF file could not be loaded.</p>
@@ -102,13 +105,13 @@
   </div>
 </div>
 
-<script src="lib/pdfjs/pdf.min.js?v=20261110c"></script>
-<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110c"></script>
-<script src="lib/jszip/jszip.min.js?v=20261110c"></script>
-<script src="js/storage.js?v=20261110c"></script>
-<script src="js/reader.js?v=20261110c"></script>
-<script src="js/notes.js?v=20261110c"></script>
-<script src="js/export.js?v=20261110c"></script>
-<script src="js/app.js?v=20261110c"></script>
+<script src="lib/pdfjs/pdf.min.js?v=20261110d"></script>
+<script src="lib/pdf-lib/pdf-lib.min.js?v=20261110d"></script>
+<script src="lib/jszip/jszip.min.js?v=20261110d"></script>
+<script src="js/storage.js?v=20261110d"></script>
+<script src="js/reader.js?v=20261110d"></script>
+<script src="js/notes.js?v=20261110d"></script>
+<script src="js/export.js?v=20261110d"></script>
+<script src="js/app.js?v=20261110d"></script>
 </body>
 </html>
