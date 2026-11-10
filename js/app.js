@@ -9,6 +9,7 @@
   var countsByBook = {};
   var wasSingle = null;
   var touchStartX = null;
+  var bookLoading = false; // true only while openBook() is actively opening a book
 
   var Reader = window.TCMReader, Notes = window.TCMNotes,
       Storage = window.TCMStorage, Export = window.TCMExport;
@@ -118,12 +119,16 @@
 
   /* ---------- opening + rendering ---------- */
   Reader.onProgress = function (loaded, total) {
+    // PDF.js keeps emitting progress for background auto-fetch long after a
+    // book has opened — only show the loader while openBook() is in flight.
+    if (!bookLoading) return;
     if ($('errorBox').classList.contains('show')) return; // don't resurrect the loader over an error
     $('loadBox').classList.add('show');
     if (total > 0) { var pct = Math.min(100, Math.round((loaded / total) * 100)); $('loadProgress').value = pct; $('loadText').textContent = 'Loading book… ' + pct + '%'; }
     else $('loadText').textContent = 'Loading book…';
   };
   Reader.onRender = function (wraps) {
+    $('loadBox').classList.remove('show'); // a rendered spread means loading is done
     wraps.forEach(function (w) { Notes.renderPage(w.wrap); });
     updateNav();
   };
@@ -143,10 +148,12 @@
       c.classList.toggle('active', c.dataset.bookId === book.id);
     });
     $('errorBox').classList.remove('show');
+    bookLoading = true;
     $('loadBox').classList.add('show');
     $('loadText').textContent = 'Loading book…';
     var url = 'books/' + encodeURIComponent(book.file);
     return Reader.load(book, url).then(function () {
+      bookLoading = false;
       $('loadBox').classList.remove('show');
       var card = document.querySelector('.book-card[data-book-id="' + book.id + '"] .stats');
       if (card) card.textContent = Reader.numPages + ' pages';
@@ -159,6 +166,7 @@
         return rerender();
       });
     }).catch(function (err) {
+      bookLoading = false;
       $('loadBox').classList.remove('show');
       $('errorText').textContent = '“' + book.file + '” could not be loaded. It may not have been added to the books folder yet, or the connection dropped. (' + (err && err.message ? err.message : err) + ')';
       $('errorBox').classList.add('show');
